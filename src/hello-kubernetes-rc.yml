@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-kubernetes
+spec:
+  replicas: 3
+  selector:
+      app: hello-kubernetes
+  template:
+    metadata:
+      name: hello-kubernetes
+      labels:
+        app: hello-kubernetes
+    spec:
+      containers:
+      - name: hello-kubernetes
+        image: aveevadevops/hello-kubernetes:1.5
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: hello-kubernetes
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - {key: app, operator: In, values: [hello-kubernetes, hello-kubernetes1]}
+      - {key: teir, operator: NotIn, values: [production]}
+  template:
+    metadata:
+      labels:
+        app: hello-kubernetes
+        environment: dev
+    spec:
+      containers:
+      - name: hello-kubernetes
+        image: aveevadevops/hello-kubernetes:1.5
+        ports:
+        - containerPort: 8080
